@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from './Navbar';
 
 const NAV_ITEMS = [
@@ -56,24 +56,8 @@ function LandingPage({ onGetStarted, getStartedClicked }) {
 }
 
 function App() {
-  const navbarRef = useRef(null);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const lastScrollY = useRef(window.scrollY);
   const [showMain, setShowMain] = useState(false);
   const [getStartedClicked, setGetStartedClicked] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY < lastScrollY.current) {
-        setShowNavbar(true);
-      } else if (window.scrollY > lastScrollY.current) {
-        setShowNavbar(false);
-      }
-      lastScrollY.current = window.scrollY;
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
